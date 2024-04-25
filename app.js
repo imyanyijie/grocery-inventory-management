@@ -5,7 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const mongoose = require('mongoose');
 
-const mongoDB = '';
+const mongoDB = "mongodb+srv://yanyijie1993:AtG7j0QPCGFo5D3d@cluster0.ggefpb1.mongodb.net/grocery_inventory?retryWrites=true&w=majority&appName=Cluster0";
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
@@ -44,6 +44,7 @@ app.use(function(err, req, res, next) {
 
 mongoose.set("strictQuery", false);
 mongoConnect().catch((err)=>console.log(err));
+
 async function mongoConnect(){
   await mongoose.connect(mongoDB);
 }
