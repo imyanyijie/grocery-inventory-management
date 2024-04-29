@@ -1,0 +1,18 @@
+<%- include('header') %>
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-8 text-left"> 
+      <h1><%- title %>: <%- category.name %></h1>
+      <% if(item_list.length){%>
+      <ul>
+        <% for(let item of item_list) {%>
+          <li><a href="<%= item.url %>"> <%= item.name %> </a></li>
+          <% } %>
+      </ul>
+      <% } %>
+      <hr>
+      <p><a href="<%= category.url %>/delete">delete category</a></p>
+      <p><a href="<%= category.url %>/update">update category</a></p>
+    </div>
+  </div>
+</div>

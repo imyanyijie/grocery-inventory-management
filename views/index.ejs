@@ -1,14 +1,11 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title><%= title %></title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-  </head>
-  <body>
-    <% include('')%>
-    <% {content %>
-    <h1><%= title %></h1>
-    <p>Welcome to <%= title %></p>
-    <% } %>
-  </body>
-</html>
+<%- include('header') %>
+<div class="container-fluid text-center">    
+  <div class="row content">
+    <div class="col-sm-8 text-left"> 
+      <h1><%- title %></h1>
+      <p>Welcome to the grocery store management system. This website will help you manage the invenory for a grocery store</p>
+      <hr>
+      <h3>Test</h3>
+    </div>
+  </div>
+</div>

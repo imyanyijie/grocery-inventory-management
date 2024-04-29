@@ -1,0 +1,15 @@
+<%- include('header') %>
+<div class="container-fluid text-center">    
+    <div class="row content">
+      <div class="col-sm-8 text-left"> 
+        <h1><% title %></h1>
+        <form method="post">
+            <div class="form-group">
+                <label for="category_name">Category Name</label>
+                <input type="text" name="category_name" class="form-control" value="<%= (category === null?"":category.name) %>" required>
+            </div>
+            <button type="submit" class="btn btn-default">Create</button>
+        </form>
+      </div>
+    </div>
+  </div>
