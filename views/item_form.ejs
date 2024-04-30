@@ -3,7 +3,7 @@
     <div class="row content">
       <div class="col-sm-8 text-left"> 
         <h1><% title %></h1>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="item_name">Item Name</label>
                 <input type="text" name="item_name" class="form-control" required value="<%= (typeof item == 'undefined' ? '':item.name) %>" >
@@ -19,6 +19,8 @@
                         <option value="<%= category.name %>"><%= category.name %></option>
                     <% } %>
                 </select>
+                <label for="itemImg">Item Image</label>
+                <input type="file" name="itemImg">
             </div>
             <button type="submit" class="btn btn-default">Create</button>
         </form>

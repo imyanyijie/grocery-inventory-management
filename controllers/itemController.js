@@ -1,8 +1,11 @@
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
+const multer = require("multer");
 
+const upload = multer({dest:"public/images/"})
 const Item = require("../models/item");
 const Category = require("../models/category");
+const { DateTime } = require("luxon");
 
 exports.item_list = asyncHandler(async (req, res, next) => {
     const items = await Item.find().exec();
@@ -14,6 +17,7 @@ exports.item_list = asyncHandler(async (req, res, next) => {
 
 exports.item_detail = asyncHandler(async (req, res, next) =>{
     const item = await Item.findById(req.params.id);
+    console.log(item.img_path);
     res.render("item_detail", {
         title: "Item detail",
         item: item,
@@ -40,6 +44,7 @@ exports.item_create_post =[
         }
         next();
       },
+    upload.single('itemImg'),
     body("item_name", "Item quantity must not be empty")
         .trim()
         .isLength({min:1})
@@ -53,7 +58,6 @@ exports.item_create_post =[
     body("item_quantity", "Item quantity must not be empty")
         .trim()
         .escape(),
-    
         asyncHandler(async (req, res, next) =>{
             const error = validationResult(req);
             const item = new Item ({
@@ -61,6 +65,7 @@ exports.item_create_post =[
                 description: req.body.item_description, 
                 quantity: req.body.item_quantity, 
                 price: req.body.item_price, 
+                img_path:req.file.path,
                 category: req.body.genre,
             });
             if(!error.isEmpty()){
@@ -102,6 +107,7 @@ exports.item_update_post = [
         }
         next();
       },
+      upload.single('itemImg'),
     body("item_name", "Item quantity must not be empty")
         .trim()
         .isLength({min:1})
@@ -124,6 +130,7 @@ exports.item_update_post = [
                 description: req.body.item_description, 
                 quantity: req.body.item_quantity, 
                 price: req.body.item_price, 
+                img_path:req.file.path,
                 category: req.body.genre,
             });
             if(!error.isEmpty()){
