@@ -4,14 +4,15 @@
     <div class="col-sm-8 text-left"> 
       <h1><%- title %></h1>
       <% if(items.length){ %>
-      <ul>
         <%for(let item of items){%>
-          <li><a href=<%- item.url %>><%- item.name %></a></li>
+          <div class="col-lg-1">
+            <img src="\<%- item.img_path %>" alt="No Image Found">
+            <a href=<%- item.url %>><%- item.name %></a>
+          </div>
           <% } %>
-      </ul>
       <% } %>
-      <hr>
-      <p><a href="/item/create">Create Item</a></p>
     </div>
   </div>
+  <hr>
+  <p><a href="/item/create">Create Item</a></p>
 </div>

@@ -1,13 +1,13 @@
 var express = require('express');
 var router = express.Router();
+const Item = require("../models/item");
+const Category = require("../models/category");
 
 const catagoryController = require('../controllers/categoryController');
 const itemController = require('../controllers/itemController');
 
 /* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Store Inventory Manegement System' });
-});
+router.get('/', itemController.index);
 
 //category routers//
 router.get("/category/create", catagoryController.category_create_get);

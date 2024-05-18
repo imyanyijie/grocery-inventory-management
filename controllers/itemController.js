@@ -1,11 +1,25 @@
 const asyncHandler = require("express-async-handler");
 const { body, validationResult } = require("express-validator");
 const multer = require("multer");
+const fs = require("fs");
 
 const upload = multer({dest:"public/images/"})
 const Item = require("../models/item");
 const Category = require("../models/category");
 const { DateTime } = require("luxon");
+
+exports.index = asyncHandler(async (req, res, next) =>{
+    const[item_count,category_count] = await Promise.all([
+      Item.countDocuments().exec(),
+      Category.countDocuments().exec()
+    ]);
+  
+    res.render('index', { 
+      title: 'Store Inventory Manegement System', 
+      item_count: item_count,
+      category_count:category_count
+    });
+});
 
 exports.item_list = asyncHandler(async (req, res, next) => {
     const items = await Item.find().exec();
@@ -141,6 +155,10 @@ exports.item_update_post = [
                 });
             }
             else{
+                const itemOld = await Item.findById(req.params.id);
+                if(itemOld.img_path!==item.img_path){
+                    fs.unlinkSync(itemOld.img_path);
+                }
                 await Item.findByIdAndUpdate(req.params.id,item);
                 res.redirect(item.url)
             }

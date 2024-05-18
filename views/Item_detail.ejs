@@ -3,10 +3,11 @@
   <div class="row content">
     <div class="col-sm-8 text-left"> 
       <h1><%- title %>: <%- item.name %></h1>
+      <p><img src="\<%- item.img_path %>" alt="item image" width="auto" height="200" ></p>
       <p>Item Description: <%= item.description %></p>
       <p>Item Price: <%= item.price %></p>
       <p>Item Quantity: <%= item.quantity %></p>
-      <p><img src="\<%- item.img_path %>" alt="item image" width="200" height="200" ></p>
+      <p>Date Added: <%=item.date_formatted %></p>
       <hr>
       <p><a href="<%= item.url %>/delete">Delete item</a></p>
       <p><a href="<%= item.url %>/update">Update item</a></p>
