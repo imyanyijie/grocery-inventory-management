@@ -26,9 +26,6 @@ router.get("/category/:id", catagoryController.category_detail);
 
 router.get("/category", catagoryController.category_list);
 
-
-
-
 //item routers//
 router.get("/item/create",itemController.item_create_get);
 
